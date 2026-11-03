@@ -19,6 +19,7 @@ export type PlaceholderWork = {
   title: string;
   category: string;
   label: string;
+  summary: string;
   tone: "forest" | "smoke" | "noir";
 };
 
@@ -50,6 +51,8 @@ export const placeholderWorks: PlaceholderWork[] = [
     title: "Placeholder Study — Low Light",
     category: "Portrait / Retouching",
     label: "Placeholder — low-light portrait study",
+    summary:
+      "A low-light portrait placeholder reserved for a future portrait and retouching study.",
     tone: "forest",
   },
   {
@@ -57,6 +60,8 @@ export const placeholderWorks: PlaceholderWork[] = [
     title: "Placeholder Study — Forest Light",
     category: "Editorial / Color",
     label: "Placeholder — editorial color study",
+    summary:
+      "An editorial color placeholder reserved for a future landscape-led story.",
     tone: "smoke",
   },
   {
@@ -64,6 +69,8 @@ export const placeholderWorks: PlaceholderWork[] = [
     title: "Placeholder Study — Texture",
     category: "Retouching / Detail",
     label: "Placeholder — texture and detail study",
+    summary:
+      "A texture-driven detail placeholder reserved for a future finishing study.",
     tone: "noir",
   },
 ];

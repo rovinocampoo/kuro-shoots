@@ -16,6 +16,8 @@ type PlaceholderImageProps = {
   label: string;
   tone?: PlaceholderTone;
   className?: string;
+  badgeClassName?: string;
+  showBadge?: boolean;
   showCaption?: boolean;
   children?: ReactNode;
 };
@@ -24,6 +26,8 @@ export function PlaceholderImage({
   label,
   tone = "forest",
   className,
+  badgeClassName,
+  showBadge = true,
   showCaption = true,
   children,
 }: PlaceholderImageProps) {
@@ -50,10 +54,17 @@ export function PlaceholderImage({
         className="absolute inset-0 opacity-[0.16] [background-image:linear-gradient(rgba(234,230,220,0.18)_1px,transparent_1px),linear-gradient(90deg,rgba(234,230,220,0.18)_1px,transparent_1px)] [background-size:72px_72px]"
       />
 
-      <span className="absolute left-4 top-4 inline-flex items-center gap-2 rounded-full border border-bone/20 bg-void/35 px-3 py-1.5 text-[0.5rem] font-medium uppercase tracking-[0.3em] text-bone/80 backdrop-blur-sm">
-        <span aria-hidden="true" className="size-1 rounded-full bg-moss" />
-        Placeholder
-      </span>
+      {showBadge ? (
+        <span
+          className={cn(
+            "absolute inline-flex items-center gap-2 rounded-full border border-bone/20 bg-void/35 px-3 py-1.5 text-[0.5rem] font-medium uppercase tracking-[0.3em] text-bone/80 backdrop-blur-sm",
+            badgeClassName ?? "left-4 top-4",
+          )}
+        >
+          <span aria-hidden="true" className="size-1 rounded-full bg-moss" />
+          Placeholder
+        </span>
+      ) : null}
 
       {children}
 

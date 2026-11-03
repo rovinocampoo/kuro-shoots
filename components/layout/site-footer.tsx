@@ -53,7 +53,7 @@ export function SiteFooter() {
               </div>
               <div className="flex justify-between gap-6">
                 <dt className="text-muted">Inquiry form</dt>
-                <dd className="text-right text-bone/70">Next phase</dd>
+                <dd className="text-right text-bone/70">Coming soon</dd>
               </div>
             </dl>
           </div>

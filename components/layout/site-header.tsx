@@ -7,6 +7,9 @@ import { Wordmark } from "@/components/ui/wordmark";
 import { cn } from "@/lib/cn";
 import { navItems, site } from "@/lib/site";
 
+const FOCUSABLE_SELECTOR =
+  "a[href], button:not([disabled]), [tabindex]:not([tabindex='-1'])";
+
 export function SiteHeader() {
   const [open, setOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
@@ -21,12 +24,55 @@ export function SiteHeader() {
   }, []);
 
   useEffect(() => {
+    const mediaQuery = window.matchMedia("(min-width: 768px)");
+    const onChange = (event: MediaQueryListEvent) => {
+      if (event.matches) setOpen(false);
+    };
+
+    mediaQuery.addEventListener("change", onChange);
+    return () => mediaQuery.removeEventListener("change", onChange);
+  }, []);
+
+  useEffect(() => {
     if (!open) return;
+
+    const panel = panelRef.current;
+    if (!panel) return;
+
+    const firstNavLink = panel.querySelector<HTMLElement>("[data-mobile-link]");
+    firstNavLink?.focus();
 
     const onKeyDown = (event: KeyboardEvent) => {
       if (event.key === "Escape") {
+        event.preventDefault();
         setOpen(false);
-        toggleRef.current?.focus();
+        window.requestAnimationFrame(() => toggleRef.current?.focus());
+        return;
+      }
+
+      if (event.key !== "Tab") return;
+
+      const focusable = Array.from(
+        panel.querySelectorAll<HTMLElement>(FOCUSABLE_SELECTOR),
+      );
+
+      if (focusable.length === 0) return;
+
+      const first = focusable[0];
+      const last = focusable[focusable.length - 1];
+      const active = document.activeElement as HTMLElement | null;
+
+      if (event.shiftKey) {
+        if (active === first || !active || !focusable.includes(active)) {
+          event.preventDefault();
+          last.focus();
+        }
+        return;
+      }
+
+      if (active === last || !active || !focusable.includes(active)) {
+        event.preventDefault();
+        first.focus();
       }
     };
 
@@ -34,14 +80,33 @@ export function SiteHeader() {
     document.body.style.overflow = "hidden";
     document.addEventListener("keydown", onKeyDown);
 
-    const firstLink = panelRef.current?.querySelector<HTMLElement>("a");
-    firstLink?.focus();
-
     return () => {
       document.body.style.overflow = previousOverflow;
       document.removeEventListener("keydown", onKeyDown);
     };
   }, [open]);
+
+  const closeAndRestoreFocus = () => {
+    setOpen(false);
+    window.requestAnimationFrame(() => toggleRef.current?.focus());
+  };
+
+  const handleNavigation = (href: string) => {
+    setOpen(false);
+
+    if (!href.startsWith("/#")) return;
+
+    const targetId = href.slice(2);
+    window.requestAnimationFrame(() => {
+      const target = document.getElementById(targetId);
+      const heading = target?.querySelector<HTMLElement>("h1, h2, h3");
+
+      if (heading) {
+        heading.setAttribute("tabindex", "-1");
+        heading.focus({ preventScroll: true });
+      }
+    });
+  };
 
   return (
     <header
@@ -112,39 +177,67 @@ export function SiteHeader() {
           ref={panelRef}
           role="dialog"
           aria-modal="true"
-          aria-label="Site navigation"
-          className="fixed inset-x-0 bottom-0 top-20 z-40 overflow-y-auto border-t border-hairline bg-void md:hidden"
+          aria-label="Site menu"
+          className="fixed inset-0 z-[60] flex flex-col bg-void md:hidden"
         >
-          <Container className="flex min-h-full flex-col justify-between py-10">
-            <nav aria-label="Mobile primary">
-              <ul className="flex flex-col">
-                {navItems.map((item, index) => (
-                  <li key={item.href} className="border-b border-hairline">
-                    <Link
-                      href={item.href}
-                      onClick={() => setOpen(false)}
-                      className="flex items-baseline justify-between gap-6 py-6 font-display text-4xl font-light text-bone transition-colors duration-300 hover:text-sage"
-                    >
-                      {item.label}
-                      <span className="text-[0.6rem] uppercase tracking-[0.3em] text-moss">
-                       0{index + 1}
-                      </span>
-                    </Link>
-                  </li>
-                ))}
-              </ul>
-            </nav>
+          <div className="shrink-0 border-b border-hairline">
+            <Container className="flex h-20 items-center justify-between gap-6">
+              <Link
+                href="/"
+                aria-label={`${site.name} — home`}
+                onClick={() => setOpen(false)}
+                className="shrink-0"
+              >
+                <Wordmark />
+              </Link>
 
-            <div className="mt-12 border-t border-hairline pt-6">
-              <p className="text-[0.6rem] uppercase tracking-[0.3em] text-muted">
-                {site.supportingName}
-              </p>
-              <p className="mt-3 max-w-xs text-sm leading-relaxed text-muted/70">
-                Placeholder portfolio — final photography and project pages are
-                still to be supplied.
-              </p>
-            </div>
-          </Container>
+              <button
+                type="button"
+                onClick={closeAndRestoreFocus}
+                aria-label="Close menu"
+                className="grid size-10 place-items-center rounded-full border border-bone/15 text-bone transition-colors duration-300 hover:border-moss/70"
+              >
+                <span className="relative block h-4 w-5" aria-hidden="true">
+                  <span className="absolute inset-x-0 top-1/2 h-px rotate-45 bg-current" />
+                  <span className="absolute inset-x-0 top-1/2 h-px -rotate-45 bg-current" />
+                </span>
+              </button>
+            </Container>
+          </div>
+
+          <div className="flex-1 overflow-y-auto overscroll-contain">
+            <Container className="flex min-h-full flex-col justify-between py-10">
+              <nav aria-label="Mobile primary">
+                <ul className="flex flex-col">
+                  {navItems.map((item, index) => (
+                    <li key={item.href} className="border-b border-hairline">
+                      <Link
+                        href={item.href}
+                        data-mobile-link
+                        onClick={() => handleNavigation(item.href)}
+                        className="group flex items-baseline justify-between gap-6 py-6 font-display text-4xl font-light text-bone transition-colors duration-300 hover:text-sage"
+                      >
+                        {item.label}
+                        <span className="text-[0.6rem] uppercase tracking-[0.3em] text-moss">
+                          0{index + 1}
+                        </span>
+                      </Link>
+                    </li>
+                  ))}
+                </ul>
+              </nav>
+
+              <div className="mt-12 border-t border-hairline pt-6">
+                <p className="text-[0.6rem] uppercase tracking-[0.3em] text-muted">
+                  {site.supportingName}
+                </p>
+                <p className="mt-3 max-w-xs text-sm leading-relaxed text-muted/70">
+                  Placeholder portfolio — final photography and project pages are
+                  still to be supplied.
+                </p>
+              </div>
+            </Container>
+          </div>
         </div>
       ) : null}
     </header>
