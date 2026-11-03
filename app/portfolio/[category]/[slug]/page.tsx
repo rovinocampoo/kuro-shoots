@@ -3,6 +3,7 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import { Container } from "@/components/layout/container";
 import { ArrowUpRight } from "@/components/ui/arrow-icon";
+import { BeforeAfterSlider } from "@/components/portfolio/before-after-slider";
 import { Breadcrumbs } from "@/components/portfolio/breadcrumbs";
 import { PortfolioMediaFrame } from "@/components/portfolio/portfolio-media";
 import {
@@ -137,6 +138,42 @@ export default async function ProjectPage({ params }: ProjectPageProps) {
           </div>
         </Container>
       </section>
+
+      {project.comparison ? (
+        <section
+          aria-labelledby="project-comparison-heading"
+          className="border-b border-hairline bg-ink/40 py-20 sm:py-24 lg:py-28"
+        >
+          <Container>
+            <div className="grid gap-8 lg:grid-cols-12 lg:items-end">
+              <div className="lg:col-span-8">
+                <p className="text-[0.54rem] uppercase tracking-[0.3em] text-moss">
+                  Before &amp; after
+                </p>
+                <h2
+                  id="project-comparison-heading"
+                  className="mt-3 max-w-3xl font-display text-4xl font-light leading-[0.98] text-bone sm:text-5xl lg:text-6xl"
+                >
+                  The original, and the final.
+                </h2>
+              </div>
+              <p className="max-w-sm text-sm leading-relaxed text-muted lg:col-span-4 lg:justify-self-end">
+                Drag the divider to move between the original and edited frame.
+                Switch to side-by-side for a direct read, or open the full-screen
+                comparison for a closer look.
+              </p>
+            </div>
+
+            <div className="mt-10 lg:mt-12">
+              <BeforeAfterSlider
+                comparison={project.comparison}
+                title={project.title}
+                sizes="(min-width: 1280px) 1100px, 100vw"
+              />
+            </div>
+          </Container>
+        </section>
+      ) : null}
 
       <section
         aria-labelledby="project-statement-heading"
@@ -292,26 +329,6 @@ export default async function ProjectPage({ params }: ProjectPageProps) {
             ))}
           </div>
 
-          {project.comparison ? (
-            <div className="mt-12 flex flex-col gap-5 border border-hairline bg-void/40 p-6 sm:flex-row sm:items-center sm:justify-between sm:p-8">
-              <div>
-                <p className="text-[0.5rem] uppercase tracking-[0.3em] text-moss">
-                  Before & after
-                </p>
-                <p className="mt-2 font-display text-2xl font-light text-bone sm:text-3xl">
-                  Comparison study in preparation.
-                </p>
-                <p className="mt-2 max-w-xl text-sm leading-relaxed text-muted">
-                  Original and edited image data is defined for this project.
-                  The interactive comparison will be published here alongside
-                  the final images.
-                </p>
-              </div>
-              <span className="shrink-0 self-start rounded-full border border-moss/30 px-3 py-1.5 text-[0.48rem] uppercase tracking-[0.24em] text-sage sm:self-center">
-                Prepared
-              </span>
-            </div>
-          ) : null}
         </Container>
       </section>
 

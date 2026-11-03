@@ -1,3 +1,4 @@
+import { BeforeAfterSection } from "@/components/home/before-after-section";
 import { CapabilityStrip } from "@/components/home/capability-strip";
 import { Hero } from "@/components/home/hero";
 import { InquirySection } from "@/components/home/inquiry-section";
@@ -9,6 +10,7 @@ export default function Home() {
   return (
     <>
       <Hero />
+      <BeforeAfterSection />
       <CapabilityStrip />
       <SelectedWork />
       <StudioSection />

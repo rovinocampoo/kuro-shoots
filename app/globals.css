@@ -87,6 +87,11 @@
   }
 }
 
+.comparison-dialog::backdrop {
+  background-color: rgb(6 7 6 / 0.94);
+  backdrop-filter: blur(10px);
+}
+
 body::after {
   content: "";
   position: fixed;

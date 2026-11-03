@@ -53,6 +53,11 @@ export function ProjectCard({
             aria-hidden="true"
             className="absolute inset-0 bg-void/0 transition-colors duration-500 group-hover:bg-void/15"
           />
+          {project.comparison ? (
+            <span className="absolute right-4 top-4 z-10 rounded-full border border-moss/40 bg-void/60 px-3 py-1.5 text-[0.46rem] uppercase tracking-[0.22em] text-sage backdrop-blur-sm">
+              Before &amp; after
+            </span>
+          ) : null}
         </div>
 
         <div className="mt-5 flex gap-4 border-b border-hairline pb-5 sm:gap-6">

@@ -6,6 +6,8 @@ import { CategoryCard } from "@/components/portfolio/category-card";
 import { PortfolioPageHeader } from "@/components/portfolio/portfolio-page-header";
 import { ProjectCard } from "@/components/portfolio/project-card";
 import {
+  getComparisonProjects,
+  getProjectHref,
   getProjectsByCategory,
   portfolioCategories,
   portfolioProjects,
@@ -29,6 +31,8 @@ export const metadata: Metadata = {
 const countLabel = (count: number) => count.toString().padStart(2, "0");
 
 export default function PortfolioPage() {
+  const comparisonProjects = getComparisonProjects();
+
   return (
     <>
       <PortfolioPageHeader
@@ -119,6 +123,70 @@ export default function PortfolioPage() {
           </div>
         </Container>
       </section>
+
+      {comparisonProjects.length > 0 ? (
+        <section
+          id="comparisons"
+          aria-labelledby="comparisons-heading"
+          className="border-t border-hairline bg-ink/40 py-20 sm:py-24 lg:py-28"
+        >
+          <Container>
+            <div className="flex flex-col gap-4 sm:flex-row sm:items-end sm:justify-between">
+              <div>
+                <p className="text-[0.54rem] uppercase tracking-[0.3em] text-moss">
+                  Editing comparisons
+                </p>
+                <h2
+                  id="comparisons-heading"
+                  className="mt-3 font-display text-4xl font-light text-bone sm:text-5xl"
+                >
+                  Original / final.
+                </h2>
+              </div>
+              <p className="max-w-xs text-[0.54rem] uppercase tracking-[0.26em] text-muted">
+                Open a study to drag between the original and edited frame.
+              </p>
+            </div>
+
+            <div className="mt-10 grid gap-px overflow-hidden border border-hairline bg-hairline sm:grid-cols-2">
+              {comparisonProjects.map((project, index) => (
+                <Link
+                  key={project.slug}
+                  href={getProjectHref(project)}
+                  className="group flex flex-col justify-between gap-8 bg-void/60 p-6 transition-colors duration-300 hover:bg-ink sm:p-8"
+                >
+                  <div>
+                    <div className="flex flex-wrap items-center justify-between gap-3">
+                      <p className="text-[0.5rem] uppercase tracking-[0.28em] text-moss">
+                        Comparison 0{index + 1}
+                      </p>
+                      <span className="rounded-full border border-moss/30 px-3 py-1.5 text-[0.46rem] uppercase tracking-[0.22em] text-sage">
+                        Before &amp; after
+                      </span>
+                    </div>
+
+                    <h3 className="mt-5 font-display text-3xl font-light text-bone transition-colors duration-300 group-hover:text-sage sm:text-4xl">
+                      {project.title}
+                    </h3>
+                    <p className="mt-3 max-w-md text-sm leading-relaxed text-muted">
+                      {project.shortDescription}
+                    </p>
+                  </div>
+
+                  <span className="inline-flex items-center gap-3 border-b border-bone/20 pb-2 text-[0.52rem] uppercase tracking-[0.26em] text-bone/65 transition-colors duration-300 group-hover:border-moss group-hover:text-bone">
+                    View comparison
+                    <ArrowUpRight className="transition-transform duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
+                  </span>
+                </Link>
+              ))}
+            </div>
+
+            <p className="mt-5 text-[0.5rem] uppercase tracking-[0.26em] text-muted">
+              Placeholder comparisons — final before and after imagery pending.
+            </p>
+          </Container>
+        </section>
+      ) : null}
 
       <section
         aria-labelledby="projects-heading"

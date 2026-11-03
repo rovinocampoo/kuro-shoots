@@ -66,6 +66,10 @@ export type PortfolioProject = {
   comparison?: PortfolioComparison;
 };
 
+export type ProjectWithComparison = PortfolioProject & {
+  comparison: PortfolioComparison;
+};
+
 export const portfolioCategories: PortfolioCategory[] = [
   {
     slug: "photography",
@@ -222,7 +226,7 @@ export const portfolioProjects: PortfolioProject[] = [
       { label: "Category", value: "Editing & Retouching" },
       { label: "Status", value: "Placeholder project" },
       { label: "Assets", value: "Final photography pending" },
-      { label: "Comparison", value: "Prepared for before & after" },
+      { label: "Comparison", value: "Interactive before & after" },
     ],
     techniques: [
       {
@@ -257,7 +261,7 @@ export const portfolioProjects: PortfolioProject[] = [
         tone: "forest",
       },
       caption:
-        "Placeholder comparison data reserved for the interactive before-and-after slider.",
+        "Placeholder comparison — the interactive slider is ready, but the final before and after images are still pending.",
     },
   },
   {
@@ -336,7 +340,7 @@ export const portfolioProjects: PortfolioProject[] = [
       { label: "Category", value: "Color Grading" },
       { label: "Status", value: "Placeholder project" },
       { label: "Assets", value: "Final photography pending" },
-      { label: "Comparison", value: "Prepared for before & after" },
+      { label: "Comparison", value: "Interactive before & after" },
     ],
     techniques: [
       {
@@ -371,7 +375,7 @@ export const portfolioProjects: PortfolioProject[] = [
         tone: "forest",
       },
       caption:
-        "Placeholder comparison data reserved for the interactive before-and-after slider.",
+        "Placeholder comparison — the interactive slider is ready, but the final before and after images are still pending.",
     },
   },
   {
@@ -448,6 +452,12 @@ export function getProjectBySlug(
 
 export function getFeaturedProjects(): PortfolioProject[] {
   return portfolioProjects.filter((project) => project.featured);
+}
+
+export function getComparisonProjects(): ProjectWithComparison[] {
+  return portfolioProjects.filter(
+    (project): project is ProjectWithComparison => Boolean(project.comparison),
+  );
 }
 
 export function getProjectCountByCategory(
