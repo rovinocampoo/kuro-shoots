@@ -45,7 +45,7 @@ export function SiteFooter() {
             <dl className="mt-5 space-y-4 text-sm">
               <div className="flex justify-between gap-6 border-b border-hairline pb-4">
                 <dt className="text-muted">Portfolio</dt>
-                <dd className="text-right text-bone/70">In development</dd>
+                <dd className="text-right text-bone/70">Preview</dd>
               </div>
               <div className="flex justify-between gap-6 border-b border-hairline pb-4">
                 <dt className="text-muted">Imagery</dt>

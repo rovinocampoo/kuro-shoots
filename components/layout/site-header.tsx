@@ -232,8 +232,8 @@ export function SiteHeader() {
                   {site.supportingName}
                 </p>
                 <p className="mt-3 max-w-xs text-sm leading-relaxed text-muted/70">
-                  Placeholder portfolio — final photography and project pages are
-                  still to be supplied.
+                  Placeholder portfolio — final photography and case studies
+                  are still to be supplied.
                 </p>
               </div>
             </Container>

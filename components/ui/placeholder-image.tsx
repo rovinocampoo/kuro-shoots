@@ -17,6 +17,7 @@ type PlaceholderImageProps = {
   tone?: PlaceholderTone;
   className?: string;
   badgeClassName?: string;
+  ariaLabel?: string;
   showBadge?: boolean;
   showCaption?: boolean;
   children?: ReactNode;
@@ -27,6 +28,7 @@ export function PlaceholderImage({
   tone = "forest",
   className,
   badgeClassName,
+  ariaLabel,
   showBadge = true,
   showCaption = true,
   children,
@@ -34,7 +36,7 @@ export function PlaceholderImage({
   return (
     <figure
       role="img"
-      aria-label={`Placeholder image: ${label}`}
+      aria-label={ariaLabel ?? `Placeholder image: ${label}`}
       className={cn(
         "relative overflow-hidden border border-bone/[0.07] bg-charcoal",
         className,

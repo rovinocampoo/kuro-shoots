@@ -14,15 +14,6 @@ export type Service = {
   tags: string[];
 };
 
-export type PlaceholderWork = {
-  index: string;
-  title: string;
-  category: string;
-  label: string;
-  summary: string;
-  tone: "forest" | "smoke" | "noir";
-};
-
 export const site = {
   name: "KURO SHOOTS",
   supportingName: "Rovin Ocampo Photography",
@@ -32,7 +23,7 @@ export const site = {
 } as const;
 
 export const navItems: NavItem[] = [
-  { label: "Work", href: "/#work" },
+  { label: "Portfolio", href: "/portfolio" },
   { label: "Studio", href: "/#studio" },
   { label: "Services", href: "/#services" },
   { label: "Inquiries", href: "/#contact" },
@@ -43,36 +34,6 @@ export const capabilities: Capability[] = [
   { index: "02", label: "Editing & Retouching" },
   { index: "03", label: "Color Grading" },
   { index: "04", label: "Creative Direction" },
-];
-
-export const placeholderWorks: PlaceholderWork[] = [
-  {
-    index: "01",
-    title: "Placeholder Study — Low Light",
-    category: "Portrait / Retouching",
-    label: "Placeholder — low-light portrait study",
-    summary:
-      "A low-light portrait placeholder reserved for a future portrait and retouching study.",
-    tone: "forest",
-  },
-  {
-    index: "02",
-    title: "Placeholder Study — Forest Light",
-    category: "Editorial / Color",
-    label: "Placeholder — editorial color study",
-    summary:
-      "An editorial color placeholder reserved for a future landscape-led story.",
-    tone: "smoke",
-  },
-  {
-    index: "03",
-    title: "Placeholder Study — Texture",
-    category: "Retouching / Detail",
-    label: "Placeholder — texture and detail study",
-    summary:
-      "A texture-driven detail placeholder reserved for a future finishing study.",
-    tone: "noir",
-  },
 ];
 
 export const services: Service[] = [

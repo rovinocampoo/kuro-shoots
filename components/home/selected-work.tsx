@@ -1,10 +1,18 @@
+import Link from "next/link";
 import { Container } from "@/components/layout/container";
-import { ProjectCard } from "@/components/home/project-card";
+import { ProjectCard } from "@/components/portfolio/project-card";
+import { ArrowUpRight } from "@/components/ui/arrow-icon";
 import { SectionHeading } from "@/components/ui/section-heading";
-import { placeholderWorks } from "@/lib/site";
+import {
+  getCategoryHref,
+  getFeaturedProjects,
+  portfolioCategories,
+} from "@/lib/portfolio";
 
 export function SelectedWork() {
-  const [featured, ...supporting] = placeholderWorks;
+  const [featured, ...supporting] = getFeaturedProjects();
+
+  if (!featured) return null;
 
   return (
     <section id="work" className="py-24 sm:py-28 lg:py-36">
@@ -23,29 +31,46 @@ export function SelectedWork() {
               </span>
               2026
             </p>
-            <p className="mt-2 text-[0.5rem] uppercase tracking-[0.28em] text-muted/60">
-              Full project pages in preparation
-            </p>
+            <Link
+              href="/portfolio"
+              className="group mt-3 inline-flex items-center gap-3 text-[0.54rem] uppercase tracking-[0.28em] text-bone/65 transition-colors duration-300 hover:text-bone"
+            >
+              View full portfolio
+              <ArrowUpRight className="transition-transform duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
+            </Link>
           </div>
         </div>
 
         <div className="mt-14">
-          <ProjectCard work={featured} variant="featured" />
+          <ProjectCard project={featured} index="01" variant="featured" />
         </div>
 
         <div className="mt-14 grid gap-10 sm:grid-cols-2 lg:mt-16 lg:gap-12">
-          {supporting.map((work) => (
-            <ProjectCard key={work.index} work={work} />
+          {supporting.map((project, index) => (
+            <ProjectCard
+              key={project.slug}
+              project={project}
+              index={`0${index + 2}`}
+            />
           ))}
         </div>
 
-        <div className="mt-12 flex flex-col gap-3 border-t border-hairline pt-5 sm:flex-row sm:items-center sm:justify-between">
+        <div className="mt-12 flex flex-col gap-4 border-t border-hairline pt-5 sm:flex-row sm:items-center sm:justify-between">
           <p className="text-[0.56rem] uppercase tracking-[0.28em] text-muted">
             Sample layout — final photographic series to be supplied
           </p>
-          <p className="text-[0.5rem] uppercase tracking-[0.28em] text-muted/60">
-            Case studies / before & after / full gallery
-          </p>
+          <ul className="flex flex-wrap gap-x-5 gap-y-2">
+            {portfolioCategories.map((category) => (
+              <li key={category.slug}>
+                <Link
+                  href={getCategoryHref(category.slug)}
+                  className="text-[0.52rem] uppercase tracking-[0.24em] text-muted/70 transition-colors duration-300 hover:text-bone"
+                >
+                  {category.title}
+                </Link>
+              </li>
+            ))}
+          </ul>
         </div>
       </Container>
     </section>
