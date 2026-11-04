@@ -1,0 +1,126 @@
+[
+  {
+    "group": "KURO-SHOOTS-REVIEW\\images | 4x5-ig-carousel",
+    "folder": "KURO-SHOOTS-REVIEW\\images",
+    "sequence": "4x5-ig-carousel",
+    "count": 10,
+    "slides": [
+      "K0134",
+      "K0135",
+      "K0136",
+      "K0137",
+      "K0138",
+      "K0139",
+      "K0140",
+      "K0141",
+      "K0142",
+      "K0143"
+    ],
+    "filenames": [
+      "4x5-IG-carousel_01.jpg",
+      "4x5-IG-carousel_02.jpg",
+      "4x5-IG-carousel_03.jpg",
+      "4x5-IG-carousel_04.jpg",
+      "4x5-IG-carousel_05.jpg",
+      "4x5-IG-carousel_06.jpg",
+      "4x5-IG-carousel_07.jpg",
+      "4x5-IG-carousel_08.jpg",
+      "4x5-IG-carousel_09.jpg",
+      "4x5-IG-carousel_10.jpg"
+    ],
+    "basis": "consecutive numbering 1..10; identical dimensions 1080x1350; IG-style aspect 4:5; carousel-like filename prefix",
+    "status": "possible"
+  },
+  {
+    "group": "KURO-SHOOTS-REVIEW\\part 1 | 4x5-ig-carousel",
+    "folder": "KURO-SHOOTS-REVIEW\\part 1",
+    "sequence": "4x5-ig-carousel",
+    "count": 10,
+    "slides": [
+      "K0152",
+      "K0153",
+      "K0154",
+      "K0155",
+      "K0156",
+      "K0157",
+      "K0158",
+      "K0159",
+      "K0160",
+      "K0161"
+    ],
+    "filenames": [
+      "4x5-IG-carousel_01.jpg",
+      "4x5-IG-carousel_02.jpg",
+      "4x5-IG-carousel_03.jpg",
+      "4x5-IG-carousel_04.jpg",
+      "4x5-IG-carousel_05.jpg",
+      "4x5-IG-carousel_06.jpg",
+      "4x5-IG-carousel_07.jpg",
+      "4x5-IG-carousel_08.jpg",
+      "4x5-IG-carousel_09.jpg",
+      "4x5-IG-carousel_10.jpg"
+    ],
+    "basis": "consecutive numbering 1..10; identical dimensions 1080x1350; IG-style aspect 4:5; carousel-like filename prefix",
+    "status": "possible"
+  },
+  {
+    "group": "KURO-SHOOTS-REVIEW\\part 2 | part2",
+    "folder": "KURO-SHOOTS-REVIEW\\part 2",
+    "sequence": "part2",
+    "count": 9,
+    "slides": [
+      "K0162",
+      "K0163",
+      "K0164",
+      "K0165",
+      "K0166",
+      "K0167",
+      "K0168",
+      "K0169",
+      "K0170"
+    ],
+    "filenames": [
+      "part2_01.jpg",
+      "part2_02.jpg",
+      "part2_03.jpg",
+      "part2_04.jpg",
+      "part2_05.jpg",
+      "part2_06.jpg",
+      "part2_07.jpg",
+      "part2_08.jpg",
+      "part2_09.jpg"
+    ],
+    "basis": "consecutive numbering 1..9; identical dimensions 1080x1350; IG-style aspect 4:5; carousel-like filename prefix",
+    "status": "possible"
+  },
+  {
+    "group": "KURO-SHOOTS-REVIEW\\part 3\\images | part3",
+    "folder": "KURO-SHOOTS-REVIEW\\part 3\\images",
+    "sequence": "part3",
+    "count": 9,
+    "slides": [
+      "K0171",
+      "K0172",
+      "K0173",
+      "K0174",
+      "K0175",
+      "K0176",
+      "K0177",
+      "K0178",
+      "K0179"
+    ],
+    "filenames": [
+      "part3_01.jpg",
+      "part3_02.jpg",
+      "part3_03.jpg",
+      "part3_04.jpg",
+      "part3_05.jpg",
+      "part3_06.jpg",
+      "part3_07.jpg",
+      "part3_08.jpg",
+      "part3_09.jpg"
+    ],
+    "basis": "consecutive numbering 1..9; identical dimensions 1080x1350; IG-style aspect 4:5; carousel-like filename prefix",
+    "status": "possible"
+  }
+]
