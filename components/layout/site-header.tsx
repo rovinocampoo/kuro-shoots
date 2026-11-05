@@ -139,10 +139,10 @@ export function SiteHeader() {
         </nav>
 
         <Link
-          href="/#contact"
+          href="/portfolio"
           className="hidden shrink-0 rounded-full border border-bone/20 px-5 py-2.5 text-[0.58rem] font-medium uppercase tracking-[0.26em] text-bone transition-colors duration-300 hover:border-moss/70 hover:bg-moss/10 md:inline-flex"
         >
-          Inquire
+          View Photography
         </Link>
 
         <button
@@ -232,8 +232,7 @@ export function SiteHeader() {
                   {site.supportingName}
                 </p>
                 <p className="mt-3 max-w-xs text-sm leading-relaxed text-muted/70">
-                  Placeholder portfolio — final photography and case studies
-                  are still to be supplied.
+                  Photography, retouching, and color grading by Rovin Ocampo.
                 </p>
               </div>
             </Container>

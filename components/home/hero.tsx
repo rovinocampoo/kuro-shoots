@@ -1,21 +1,27 @@
 import Link from "next/link";
+import Image from "next/image";
 import { Container } from "@/components/layout/container";
 import { ArrowUpRight } from "@/components/ui/arrow-icon";
 import { ButtonLink } from "@/components/ui/button-link";
-import { PlaceholderImage } from "@/components/ui/placeholder-image";
+import { getPhotoById } from "@/lib/photo-library";
 
 export function Hero() {
+  const heroPhoto = getPhotoById("K0123");
+
+  if (!heroPhoto) return null;
+
   return (
     <section
       id="top"
       className="relative isolate min-h-[100svh] overflow-hidden"
     >
-      <PlaceholderImage
-        label="Hero photograph — placeholder"
-        tone="forest"
-        showCaption={false}
-        badgeClassName="right-5 top-24 sm:right-8 lg:right-12"
-        className="absolute inset-0 -z-20 h-full w-full rounded-none border-0"
+      <Image
+        src={heroPhoto.src}
+        alt="A boat moving across a dark river at night"
+        fill
+        sizes="100vw"
+        preload
+        className="-z-20 object-cover"
       />
 
       <div
@@ -40,9 +46,9 @@ export function Hero() {
           <div className="animate-fade-up lg:col-span-8">
             <p className="flex flex-wrap items-center gap-x-3 gap-y-1 text-[0.56rem] font-medium uppercase tracking-[0.34em] text-bone/60">
               <span className="size-1.5 rounded-full bg-moss" />
-              <span>Portfolio preview</span>
+              <span>Photography portfolio</span>
               <span aria-hidden="true" className="h-px w-7 bg-bone/25" />
-              <span className="text-moss">2026</span>
+              <span className="text-moss">KURO SHOOTS</span>
             </p>
 
             <h1 className="mt-6 max-w-5xl font-display text-[clamp(3.35rem,9.6vw,9rem)] font-light leading-[0.86] tracking-[-0.03em] text-bone text-balance">
@@ -52,21 +58,21 @@ export function Hero() {
             </h1>
 
             <p className="mt-7 max-w-lg text-sm leading-relaxed text-bone/65 sm:text-base">
-              Cinematic photography, thoughtful retouching, and color grading
-              shaped by atmosphere, restraint, and light.
+              Photography by Rovin Ocampo — weddings, coffee, events, and
+              street scenes, shaped by atmosphere and light.
             </p>
 
             <div className="mt-9 flex flex-col items-start gap-5 sm:flex-row sm:items-center sm:gap-8">
-              <ButtonLink href="/#work" className="group">
-                Explore selected work
+              <ButtonLink href="/portfolio" className="group">
+                View Photography
                 <ArrowUpRight className="size-3 transition-transform duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
               </ButtonLink>
 
               <Link
-                href="/#studio"
+                href="/before-after"
                 className="group inline-flex items-center gap-3 border-b border-bone/25 pb-2 text-[0.6rem] font-medium uppercase tracking-[0.26em] text-bone/70 transition-colors duration-300 hover:border-moss hover:text-bone"
               >
-                About the studio
+                Before &amp; After
                 <ArrowUpRight className="size-3 transition-transform duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
               </Link>
             </div>
@@ -86,25 +92,25 @@ export function Hero() {
             </div>
 
             <p className="mt-4 max-w-[17rem] font-display text-2xl font-light leading-snug text-bone/85">
-              A lead photograph will anchor this space.
+              Real photographs, gathered by collection.
             </p>
             <p className="mt-3 max-w-[18rem] text-sm leading-relaxed text-bone/50">
-              Placeholder imagery is shown until the final full-bleed hero
-              photograph is supplied.
+              Browse the complete portfolio, compare original and edited
+              frames, or view the four ordered carousel sequences.
             </p>
 
             <dl className="mt-6 space-y-3 border-t border-bone/10 pt-4 text-[0.55rem] uppercase tracking-[0.28em]">
               <div className="flex justify-between gap-4">
                 <dt className="text-bone/40">Practice</dt>
-                <dd className="text-bone/70">Independent</dd>
+                <dd className="text-bone/70">Rovin Ocampo</dd>
               </div>
               <div className="flex justify-between gap-4">
                 <dt className="text-bone/40">Focus</dt>
-                <dd className="text-right text-bone/70">Image & finishing</dd>
+                <dd className="text-right text-bone/70">Photo & finishing</dd>
               </div>
               <div className="flex justify-between gap-4">
                 <dt className="text-bone/40">Imagery</dt>
-                <dd className="text-bone/70">Placeholders</dd>
+                <dd className="text-bone/70">Photography</dd>
               </div>
             </dl>
           </aside>
@@ -113,7 +119,7 @@ export function Hero() {
         <div className="mt-14 flex flex-col gap-4 border-t border-bone/10 pt-4 text-[0.52rem] uppercase tracking-[0.28em] text-bone/40 sm:flex-row sm:items-center sm:justify-between">
           <p>Photography / Retouching / Color grading</p>
           <Link
-            href="/#work"
+            href="/portfolio"
             className="group inline-flex items-center gap-3 transition-colors duration-300 hover:text-bone"
           >
             Scroll to explore

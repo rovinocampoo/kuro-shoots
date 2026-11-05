@@ -12,7 +12,7 @@ export function SiteFooter() {
             <Link href="/" aria-label={`${site.name} — home`} className="inline-flex">
               <Wordmark />
             </Link>
-            <p className="mt-7 max-w-xs font-display text-2xl font-light leading-tight text-bone sm:text-3xl">
+              <p className="mt-7 max-w-xs font-display text-2xl font-light leading-tight text-bone sm:text-3xl">
               {site.tagline}
             </p>
             <p className="mt-4 text-[0.58rem] uppercase tracking-[0.3em] text-muted">
@@ -40,22 +40,36 @@ export function SiteFooter() {
 
           <div className="lg:col-span-4">
             <p className="text-[0.58rem] font-medium uppercase tracking-[0.32em] text-moss">
-              Studio notes
+              Get in touch
             </p>
-            <dl className="mt-5 space-y-4 text-sm">
-              <div className="flex justify-between gap-6 border-b border-hairline pb-4">
-                <dt className="text-muted">Portfolio</dt>
-                <dd className="text-right text-bone/70">Preview</dd>
-              </div>
-              <div className="flex justify-between gap-6 border-b border-hairline pb-4">
-                <dt className="text-muted">Imagery</dt>
-                <dd className="text-right text-bone/70">Placeholders</dd>
-              </div>
-              <div className="flex justify-between gap-6">
-                <dt className="text-muted">Inquiry form</dt>
-                <dd className="text-right text-bone/70">Coming soon</dd>
-              </div>
-            </dl>
+            <ul className="mt-5 space-y-3 text-sm text-muted">
+              <li>
+                <a
+                  href="mailto:rovinocampoo@gmail.com"
+                  className="transition-colors hover:text-bone"
+                >
+                  rovinocampoo@gmail.com
+                </a>
+              </li>
+              <li>
+                <a
+                  href="tel:+639562268180"
+                  className="transition-colors hover:text-bone"
+                >
+                  0956 226 8180
+                </a>
+              </li>
+              <li>
+                <a
+                  href="https://www.instagram.com/kuroshoots_/"
+                  target="_blank"
+                  rel="noreferrer"
+                  className="transition-colors hover:text-bone"
+                >
+                  Instagram ↗
+                </a>
+              </li>
+            </ul>
           </div>
         </div>
 
@@ -64,7 +78,7 @@ export function SiteFooter() {
             © KURO SHOOTS
           </p>
           <p className="text-[0.58rem] uppercase tracking-[0.28em] text-muted">
-            Photography, retouching & color grading
+            Photography / Retouching / Color grading
           </p>
         </div>
       </Container>

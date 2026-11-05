@@ -23,10 +23,9 @@ export const site = {
 } as const;
 
 export const navItems: NavItem[] = [
-  { label: "Portfolio", href: "/portfolio" },
-  { label: "Studio", href: "/#studio" },
-  { label: "Services", href: "/#services" },
-  { label: "Inquiries", href: "/#contact" },
+  { label: "Photography", href: "/portfolio" },
+  { label: "Before & After", href: "/before-after" },
+  { label: "Carousels", href: "/carousels" },
 ];
 
 export const capabilities: Capability[] = [

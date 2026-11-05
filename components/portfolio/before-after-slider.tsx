@@ -83,7 +83,7 @@ function ComparisonMedia({
       preload={preload}
       draggable={false}
       onError={() => setFailed(true)}
-      className="object-cover"
+      className="object-contain"
     />
   );
 }
@@ -127,14 +127,25 @@ function SliderViewport({
   const bothPlaceholders =
     comparison.original.kind === "placeholder" &&
     comparison.edited.kind === "placeholder";
+  const aspectMedia =
+    comparison.original.kind === "image"
+      ? comparison.original
+      : comparison.edited.kind === "image"
+        ? comparison.edited
+        : undefined;
 
   return (
     <figure>
       <div
         className={cn(
           "relative select-none overflow-hidden border border-hairline bg-charcoal",
-          frameClassName ?? "aspect-[4/3] sm:aspect-[16/10]",
+          frameClassName,
         )}
+        style={{
+          aspectRatio: aspectMedia
+            ? `${aspectMedia.width} / ${aspectMedia.height}`
+            : "4 / 3",
+        }}
       >
         <div className="absolute inset-0">
           <ComparisonMedia
@@ -155,8 +166,8 @@ function SliderViewport({
           />
         </div>
 
-        <MediaLabel className="left-4 top-4">Before</MediaLabel>
-        <MediaLabel className="right-4 top-4">After</MediaLabel>
+        <MediaLabel className="left-4 top-4">Original</MediaLabel>
+        <MediaLabel className="right-4 top-4">Edited</MediaLabel>
 
         <div
           aria-hidden="true"
@@ -202,8 +213,8 @@ function SliderViewport({
           onChange={(event) =>
             onPositionChange(Number(event.currentTarget.value))
           }
-          aria-label={`Before and after comparison for ${title}`}
-          aria-valuetext={`${position}% before, ${100 - position}% after`}
+          aria-label={`Original and edited comparison for ${title}`}
+          aria-valuetext={`${position}% original, ${100 - position}% edited`}
           className="peer absolute inset-0 z-30 h-full w-full cursor-ew-resize touch-none appearance-none bg-transparent opacity-0"
         />
 
@@ -232,8 +243,8 @@ function SideBySideViewport({
   preload?: boolean;
 }) {
   const frames = [
-    { label: "Before", media: comparison.original },
-    { label: "After", media: comparison.edited },
+    { label: "Original", media: comparison.original },
+    { label: "Edited", media: comparison.edited },
   ];
   const bothPlaceholders =
     comparison.original.kind === "placeholder" &&
@@ -244,7 +255,15 @@ function SideBySideViewport({
       <div className="grid grid-cols-2 gap-2 sm:gap-4">
         {frames.map((frame) => (
           <div key={frame.label} className="min-w-0">
-            <div className="relative aspect-[3/4] overflow-hidden border border-hairline bg-charcoal sm:aspect-[4/3]">
+            <div
+              className="relative overflow-hidden border border-hairline bg-charcoal"
+              style={{
+                aspectRatio:
+                  frame.media.kind === "image"
+                    ? `${frame.media.width} / ${frame.media.height}`
+                    : "4 / 3",
+              }}
+            >
               <ComparisonMedia
                 media={frame.media}
                 sizes={sizes}
@@ -465,7 +484,7 @@ export function BeforeAfterSlider({
               <div className="flex flex-wrap items-center justify-between gap-4">
                 <div>
                   <p className="text-[0.5rem] uppercase tracking-[0.3em] text-moss">
-                    Before &amp; after
+                    Original / Edited
                   </p>
                   <h3
                     id={dialogTitleId}
@@ -501,7 +520,7 @@ export function BeforeAfterSlider({
                   {renderViewport(
                     fullscreenMode,
                     false,
-                    "aspect-[3/4] sm:aspect-[16/10]",
+                    "w-full",
                   )}
                 </div>
               </div>
