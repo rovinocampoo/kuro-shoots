@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { Container } from "@/components/layout/container";
 import { Wordmark } from "@/components/ui/wordmark";
+import { ArrowUpRight } from "@/components/ui/arrow-icon";
 import { navItems, site } from "@/lib/site";
 
 export function SiteFooter() {
@@ -66,7 +67,10 @@ export function SiteFooter() {
                   rel="noreferrer"
                   className="transition-colors hover:text-bone"
                 >
-                  Instagram ↗
+                  <span className="inline-flex items-center gap-1.5">
+                    Instagram
+                    <ArrowUpRight />
+                  </span>
                 </a>
               </li>
               <li>
@@ -76,7 +80,10 @@ export function SiteFooter() {
                   rel="noreferrer"
                   className="transition-colors hover:text-bone"
                 >
-                  Developer portfolio ↗
+                  <span className="inline-flex items-center gap-1.5">
+                    Developer portfolio
+                    <ArrowUpRight />
+                  </span>
                 </a>
               </li>
             </ul>
