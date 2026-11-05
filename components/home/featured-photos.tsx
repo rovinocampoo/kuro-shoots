@@ -6,6 +6,7 @@ import { ScrollReveal } from "@/components/ui/scroll-reveal";
 import {
   getPhotoById,
   galleryPhotos,
+  comparisons,
   photoCategories,
 } from "@/lib/photo-library";
 
@@ -85,7 +86,7 @@ export function FeaturedPhotos() {
               href="/before-after"
               className="rounded-full border border-bone/20 px-5 py-3 text-[0.54rem] uppercase tracking-[0.22em] text-bone/75 transition-colors hover:border-moss hover:text-bone"
             >
-              Explore 195 Original / Edited comparisons
+              Explore {comparisons.length} Original / Edited comparisons
             </Link>
             <Link
               href="/carousels"

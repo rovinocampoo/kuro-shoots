@@ -11,8 +11,7 @@ import {
 
 export const metadata: Metadata = {
   title: "Before & After",
-  description:
-    "Compare 195 verified original and edited KURO SHOOTS photographs.",
+  description: `Compare ${comparisons.length} visually verified original and edited KURO SHOOTS photographs.`,
 };
 
 export default function BeforeAfterPage() {
@@ -37,7 +36,7 @@ export default function BeforeAfterPage() {
       <section className="border-b border-hairline pt-32 pb-16 sm:pt-40 sm:pb-20">
         <Container>
           <p className="text-[0.58rem] uppercase tracking-[0.3em] text-moss">
-            195 verified edits
+            {comparisons.length} verified edits
           </p>
           <h1 className="mt-4 max-w-4xl font-display text-5xl font-light leading-[0.95] text-bone sm:text-7xl">
             Original / Edited

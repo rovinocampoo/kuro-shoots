@@ -35,7 +35,10 @@ export function getPhotoById(id: string): PhotoAsset | undefined {
 export function getPhotoTitle(filename: string): string {
   return filename
     .replace(/\.[^.]+$/, "")
-    .replace(/(?:[-_ ]enhanced(?:[-_ ]nr)?|[-_ ]nr)?[-_]edited$/i, "")
+    .replace(
+      /(?:[-_ ]enhanced(?:[-_ ]nr)?|[-_ ]nr)?[-_](?:edited|original)$/i,
+      "",
+    )
     .replace(/[_-]+/g, " ")
     .replace(/\s+/g, " ")
     .trim();
