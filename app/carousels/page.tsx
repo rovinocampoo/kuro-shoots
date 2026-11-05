@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Container } from "@/components/layout/container";
-import { PhotoGrid } from "@/components/portfolio/photo-grid";
+import { SwipeCarousel } from "@/components/portfolio/swipe-carousel";
+import { ScrollReveal } from "@/components/ui/scroll-reveal";
 import { carousels } from "@/lib/photo-library";
 
 export const metadata: Metadata = {
@@ -52,7 +53,9 @@ export default function CarouselsPage() {
                 {carousel.photos.length} slides · original order
               </p>
             </div>
-            <PhotoGrid photos={carousel.photos} label={carousel.title} />
+            <ScrollReveal>
+              <SwipeCarousel photos={carousel.photos} label={carousel.title} />
+            </ScrollReveal>
           </Container>
         </section>
       ))}

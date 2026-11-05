@@ -2,6 +2,7 @@ import Link from "next/link";
 import { Container } from "@/components/layout/container";
 import { PhotoGrid } from "@/components/portfolio/photo-grid";
 import { ArrowUpRight } from "@/components/ui/arrow-icon";
+import { ScrollReveal } from "@/components/ui/scroll-reveal";
 import {
   getPhotoById,
   galleryPhotos,
@@ -36,7 +37,9 @@ export function FeaturedPhotos() {
               <ArrowUpRight />
             </Link>
           </div>
-          <PhotoGrid photos={featured} label="Selected photography" />
+          <ScrollReveal>
+            <PhotoGrid photos={featured} label="Selected photography" />
+          </ScrollReveal>
         </Container>
       </section>
 
@@ -50,31 +53,33 @@ export function FeaturedPhotos() {
               Find a frame.
             </h2>
           </div>
-          <nav
-            aria-label="Photography collections"
-            className="grid gap-px overflow-hidden border border-hairline bg-hairline sm:grid-cols-2 lg:grid-cols-3"
-          >
-            {photoCategories.map((category) => (
-              <Link
-                key={category.slug}
-                href={`/portfolio#${category.slug}`}
-                className="group flex min-h-32 flex-col justify-between bg-void p-5 transition-colors hover:bg-charcoal sm:p-7"
-              >
-                <span className="text-[0.54rem] uppercase tracking-[0.25em] text-moss">
-                  {
-                    galleryPhotos.filter(
-                      (photo) => photo.category === category.slug,
-                    ).length
-                  }{" "}
-                  photographs
-                </span>
-                <span className="mt-8 flex items-center justify-between gap-4 font-display text-2xl font-light text-bone sm:text-3xl">
-                  {category.title}
-                  <ArrowUpRight className="size-4 shrink-0 text-muted transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
-                </span>
-              </Link>
-            ))}
-          </nav>
+          <ScrollReveal>
+            <nav
+              aria-label="Photography collections"
+              className="grid gap-px overflow-hidden border border-hairline bg-hairline sm:grid-cols-2 lg:grid-cols-3"
+            >
+              {photoCategories.map((category) => (
+                <Link
+                  key={category.slug}
+                  href={`/portfolio#${category.slug}`}
+                  className="group flex min-h-32 flex-col justify-between bg-void p-5 transition-colors hover:bg-charcoal sm:p-7"
+                >
+                  <span className="text-[0.54rem] uppercase tracking-[0.25em] text-moss">
+                    {
+                      galleryPhotos.filter(
+                        (photo) => photo.category === category.slug,
+                      ).length
+                    }{" "}
+                    photographs
+                  </span>
+                  <span className="mt-8 flex items-center justify-between gap-4 font-display text-2xl font-light text-bone sm:text-3xl">
+                    {category.title}
+                    <ArrowUpRight className="size-4 shrink-0 text-muted transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
+                  </span>
+                </Link>
+              ))}
+            </nav>
+          </ScrollReveal>
           <div className="mt-8 flex flex-wrap gap-3">
             <Link
               href="/before-after"

@@ -69,6 +69,16 @@ export function SiteFooter() {
                   Instagram ↗
                 </a>
               </li>
+              <li>
+                <a
+                  href="https://rovinocampo.vercel.app/"
+                  target="_blank"
+                  rel="noreferrer"
+                  className="transition-colors hover:text-bone"
+                >
+                  Developer portfolio ↗
+                </a>
+              </li>
             </ul>
           </div>
         </div>

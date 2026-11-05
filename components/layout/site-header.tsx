@@ -112,7 +112,9 @@ export function SiteHeader() {
     <header
       className={cn(
         "fixed inset-x-0 top-0 z-50 border-b transition-colors duration-500",
-        scrolled || open
+        open
+          ? "border-hairline/80 bg-void"
+          : scrolled
           ? "border-hairline/80 bg-void/85 backdrop-blur-xl"
           : "border-transparent bg-gradient-to-b from-void/70 to-transparent",
       )}

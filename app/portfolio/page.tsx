@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { Container } from "@/components/layout/container";
 import { PhotoGrid } from "@/components/portfolio/photo-grid";
+import { ScrollReveal } from "@/components/ui/scroll-reveal";
 import {
   carousels,
   getPhotosForCategory,
@@ -106,7 +107,9 @@ export default function PortfolioPage() {
                   </Link>
                 ) : null}
               </div>
-              <PhotoGrid photos={categoryPhotos} label={category.title} />
+              <ScrollReveal>
+                <PhotoGrid photos={categoryPhotos} label={category.title} />
+              </ScrollReveal>
             </Container>
           </section>
         );

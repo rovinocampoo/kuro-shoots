@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { BeforeAfterSlider } from "@/components/portfolio/before-after-slider";
 import { Container } from "@/components/layout/container";
+import { ScrollReveal } from "@/components/ui/scroll-reveal";
 import {
   comparisons,
   getPhotoTitle,
@@ -88,42 +89,44 @@ export default function BeforeAfterPage() {
                 </h2>
               </div>
             </div>
-            <div className="grid gap-12 lg:grid-cols-2 lg:gap-x-8 lg:gap-y-14">
-              {categoryComparisons.map((comparison) => {
-                const title = getPhotoTitle(comparison.original.filename);
+            <ScrollReveal>
+              <div className="grid gap-12 lg:grid-cols-2 lg:gap-x-8 lg:gap-y-14">
+                {categoryComparisons.map((comparison) => {
+                  const title = getPhotoTitle(comparison.original.filename);
 
-                return (
-                  <article
-                    key={`${comparison.originalId}-${comparison.editedId}`}
-                    className="min-w-0 border-t border-hairline pt-4"
-                  >
-                    <h3 className="mb-3 truncate text-sm text-bone/80">
-                      {title}
-                    </h3>
-                    <BeforeAfterSlider
-                      comparison={{
-                        original: {
-                          kind: "image",
-                          src: comparison.original.src,
-                          alt: `Original photograph: ${title}`,
-                          width: comparison.original.width,
-                          height: comparison.original.height,
-                        },
-                        edited: {
-                          kind: "image",
-                          src: comparison.edited.src,
-                          alt: `Edited photograph: ${title}`,
-                          width: comparison.edited.width,
-                          height: comparison.edited.height,
-                        },
-                      }}
-                      title={title}
-                      sizes="(min-width: 1024px) 45vw, 100vw"
-                    />
-                  </article>
-                );
-              })}
-            </div>
+                  return (
+                    <article
+                      key={`${comparison.originalId}-${comparison.editedId}`}
+                      className="min-w-0 border-t border-hairline pt-4"
+                    >
+                      <h3 className="mb-3 truncate text-sm text-bone/80">
+                        {title}
+                      </h3>
+                      <BeforeAfterSlider
+                        comparison={{
+                          original: {
+                            kind: "image",
+                            src: comparison.original.src,
+                            alt: `Original photograph: ${title}`,
+                            width: comparison.original.width,
+                            height: comparison.original.height,
+                          },
+                          edited: {
+                            kind: "image",
+                            src: comparison.edited.src,
+                            alt: `Edited photograph: ${title}`,
+                            width: comparison.edited.width,
+                            height: comparison.edited.height,
+                          },
+                        }}
+                        title={title}
+                        sizes="(min-width: 1024px) 45vw, 100vw"
+                      />
+                    </article>
+                  );
+                })}
+              </div>
+            </ScrollReveal>
           </Container>
         </section>
       ))}
