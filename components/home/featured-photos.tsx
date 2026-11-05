@@ -10,7 +10,7 @@ import {
   photoCategories,
 } from "@/lib/photo-library";
 
-const featuredIds = ["K0149", "K0019", "K0430", "K0037", "K0123", "K0025"];
+const featuredIds = ["K0085", "K0087", "K0083", "K0097", "K0103", "K0107"];
 
 export function FeaturedPhotos() {
   const featured = featuredIds
