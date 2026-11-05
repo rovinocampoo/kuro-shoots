@@ -47,14 +47,14 @@ export function PhotoGrid({ photos, label }: PhotoGridProps) {
 
   return (
     <>
-      <div className="grid grid-cols-2 items-start gap-2 sm:grid-cols-3 sm:gap-4 lg:grid-cols-4">
+      <div className="columns-2 gap-2 sm:columns-3 sm:gap-4 lg:columns-4">
         {photos.map((photo, index) => (
           <button
             key={photo.id}
             type="button"
             onClick={() => setSelectedIndex(index)}
-            aria-label={`View ${photo.filename} larger`}
-            className="group min-w-0 text-left"
+            aria-label={`View photograph ${index + 1} larger`}
+            className="group mb-2 inline-block w-full break-inside-avoid text-left sm:mb-4"
           >
             <span
               className="relative block w-full overflow-hidden bg-charcoal"
@@ -62,14 +62,11 @@ export function PhotoGrid({ photos, label }: PhotoGridProps) {
             >
               <Image
                 src={photo.src}
-                alt={photo.filename}
+                alt={`${label} photograph ${index + 1}`}
                 fill
                 sizes="(min-width: 1280px) 25vw, (min-width: 640px) 33vw, 50vw"
                 className="object-contain transition-transform duration-500 group-hover:scale-[1.02]"
               />
-            </span>
-            <span className="mt-2 block truncate text-[0.58rem] text-bone/65 sm:mt-3">
-              {photo.filename}
             </span>
           </button>
         ))}
@@ -89,11 +86,9 @@ export function PhotoGrid({ photos, label }: PhotoGridProps) {
         {selected ? (
           <div className="mx-auto flex h-full w-full max-w-7xl flex-col">
             <div className="flex items-center justify-between gap-4 pb-4">
-              <p className="min-w-0 truncate text-xs text-bone/70">
-                {selected.filename}
-                <span className="ml-3 text-muted">
-                  {(selectedIndex ?? 0) + 1} / {photos.length}
-                </span>
+              <p className="text-xs tabular-nums text-bone/70" aria-live="polite">
+                {String((selectedIndex ?? 0) + 1).padStart(2, "0")} /{" "}
+                {String(photos.length).padStart(2, "0")}
               </p>
               <button
                 type="button"
@@ -107,7 +102,7 @@ export function PhotoGrid({ photos, label }: PhotoGridProps) {
             <div className="relative min-h-0 flex-1">
               <Image
                 src={selected.src}
-                alt={selected.filename}
+                alt={`${label} photograph ${(selectedIndex ?? 0) + 1}`}
                 fill
                 sizes="100vw"
                 className="object-contain"
