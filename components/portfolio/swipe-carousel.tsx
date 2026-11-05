@@ -49,7 +49,7 @@ export function SwipeCarousel({ photos, label }: SwipeCarouselProps) {
       role="region"
       aria-label={`${label} carousel`}
       aria-roledescription="carousel"
-      className="mx-auto w-full max-w-3xl"
+      className="mx-auto w-full max-w-3xl lg:max-w-[min(100%,52svh)]"
     >
       <div
         ref={viewportRef}
